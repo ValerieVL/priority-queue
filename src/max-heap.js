@@ -1,56 +1,69 @@
 const Node = require('./node');
 
 class MaxHeap {
-	constructor() {
-		this.root = null;
-		this.parentNodes = [];
-	}
+    constructor() {
+        this.root = null;
+        this.parentNodes = [];
+    }
 
-	push(data, priority) {
+    push(data, priority) {
+        this.insertNode(new Node(data, priority));
+        this.shiftNodeUp(new Node(data, priority));
+    }
 
-	}
+    pop() {
 
-	pop() {
-		this.detachRoot();
+        if (this.root == null) return;
 
-	}
+        this.detachRoot();
+        this.restoreRootFromLastInsertedNode(this.detachRoot());
+        this.shiftNodeDown(this.root);
+        return this.root.data;
 
-	detachRoot() {
-		this.root = null;
+    }
 
-		
-	}
+    detachRoot() {
+        let root;
+        root = this.root;
+        this.root = null;
+        if (root.left == null || root.right == null) {
+            this.parentNodes.shift()
+        }
+        return root;
+    }
 
-	restoreRootFromLastInsertedNode(detached) {
-		
-	}
+    restoreRootFromLastInsertedNode(detached) {
 
-	size() {
-		
-	}
+    }
 
-	isEmpty() {
+    size() {
 
-	}
+    }
 
-	clear() {
-		this.root = null;
-		this.parentNodes = [];
-	}
+    isEmpty() {
+        if (this.root == null) {
+            return true;
+        }
+        else return false;
+    }
 
-	insertNode(node) {
-		if (this.heap = " ") this.root = node;
+    clear() {
+        this.root = null;
+        this.parentNodes = [];
+    }
+
+    insertNode(node) {
+        
+    }
 
 
-	}
+    shiftNodeUp(node) {
 
-	shiftNodeUp(node) {
-		
-	}
+    }
 
-	shiftNodeDown(node) {
+    shiftNodeDown(node) {
 
-	}
+    }
 }
 
 module.exports = MaxHeap;
